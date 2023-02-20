@@ -32,23 +32,41 @@ for day in cal_year:
 # Set color dictionary
 
 colors = {
-    1: "yellow",
-    2: "green",
-    3: "blue",
-    4: "cyan",
-    5: "magenta",
-    6: "white",
+    1: "cyan",
+    2: "light_cyan",
+    3: "green",
+    4: "light_green",
+    5: "light_yellow",
+    6: "yellow",
     7: "light_red",
-    8: "light_green",
-    9: "light_yellow",
-    10: "light_blue",
-    11: "light_cyan",
-    12: "light_magenta"
-    }
+    8: "red",
+    9: "light_magenta",
+    10: "magenta",
+    11: "light_blue",
+    12: "blue",
+}
+
+# Set month dictionary
+
+monthkey = {
+    1: "jan",
+    2: "feb",
+    3: "mar",
+    4: "apr",
+    5: "may",
+    6: "jun",
+    7: "jul",
+    8: "aug",
+    9: "sep",
+    10: "oct",
+    11: "nov",
+    12: "dec",
+}
 
 # Print header
 
-print("Wk   Mon Tue Wed Thu Fri Sat Sun")
+cprint("Wk   Mon Tue Wed Thu Fri Sat Sun",
+       "black", "on_white", attrs=["bold", "dark"])
 
 # Print calendar
 
@@ -58,12 +76,21 @@ for i in range(0, len(unique_cal_year), 7):
     year, month, day = week[0][0], week[0][1], week[0][2]
     isowk = datetime.date(year, month, day).isocalendar()
     print("{:>2}".format(isowk[1]), end="   ")
-    # Check if date is today. Print date.
+
+    # Check if date is today. Print dates.
     for day in week:
         date_check = f"{day[0]}-{day[1]}-{day[2]}"
         if date_check != today:
             color = colors.get(day[1], "light_grey")
             print(colored("{:>3}".format(day[2]), color), end=" ")
         else:
-            cprint("{:>3}".format(day[2]), "black", "on_yellow", attrs=["bold", "dark"], end=" ")
-    print()
+            print("", end=" ")
+            cprint("{:>2}".format(day[2]),
+                   "black", "on_yellow", attrs=["bold", "dark"], end=" ")
+
+    # Check if new month. Print month.
+    week_check = [tuple[2] for tuple in week]
+    if 8 in week_check:
+        print(colored(f"  {monthkey[month]}", color, attrs=["bold"]))
+    else:
+        print()
