@@ -6,6 +6,6 @@ Features pretty colors and today's date.
 Written in python3.
 
 Required libraries:
-- termcolor
+- pandas
 - calendar
 - datetime
