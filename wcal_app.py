@@ -1,14 +1,13 @@
 import pandas
 import datetime
-import calendar
-import wcal
+import core
 from textual.app import App
 from textual.widgets import Button, Footer, Header
 
 today = datetime.date.today()
 current_year = today.year
 
-df = wcal.create_year_df(current_year)
+df = core.create_year_df(current_year)
 
 class Wcal(App):
     BINDINGS = [
