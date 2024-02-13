@@ -5,7 +5,8 @@ Features pretty colors and today's date.
 
 Written in python3.
 
-Required libraries:
+## Required libraries:
 - pandas
 - calendar
 - datetime
+- termcolor

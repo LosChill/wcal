@@ -26,20 +26,19 @@ def create_year_df(current_year):
             if any(day.year == current_year for day in week):
                 iso_week = week[3].isocalendar()[1]
                 iso_year = week[3].isocalendar()[0]
-                days_of_month = [day.day for day in week]
                 month_name = ""
                 
-                for day in week: 
+                for day in week:
                     if day.day == 1:
                         month_name = dictionaries.month_dict[calendar.month_name[day.month]]
                         break
             
-                weeks_data.append([iso_year, iso_week] + days_of_month + [month_name])
+                weeks_data.append([iso_year, iso_week] + list(week) + [month_name])
 
     # Build columns names for use in df creation
     columns = ["Year", "Week"] + dictionaries.days_abbrev + ["Month"]
 
-    # Create df
+    # Create df from list of lists, columns.
     df = pd.DataFrame(weeks_data, columns = columns)
 
     # Remove duplicate weeks, reset index
