@@ -60,9 +60,9 @@ Output wcal.gif
 Require wcal
 
 Set Shell "fish"
-Set FontSize 16
-Set Width 1920
-Set Height 1080
+Set FontSize 32
+Set Width 1080
+Set Height 1920
 Set Theme "Catppuccin Macchiato"
 Set TypingSpeed 0.1
 
